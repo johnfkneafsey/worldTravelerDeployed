@@ -3,8 +3,20 @@ import * as Cookies from 'js-cookie';
 
 import QuestionPage from './question-page';
 import LoginPage from './login-page';
+import TopNav from './topNav';
+import AnswerInput from './answer-input';
+import Dashboard from './dashboard';
+import { connect } from 'react-redux';
+import store from '../store';
 
-class App extends React.Component {
+
+// travel words for different languages
+// additional resources
+// progress dashboard
+// pronunciation
+// choose language dashboard
+
+export class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,10 +25,9 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // Job 4: Redux-ify all of the state and fetch calls to async actions.
         const accessToken = Cookies.get('accessToken');
         if (accessToken) {
-            fetch('/api/me', {
+            fetch(`/api/me`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
                 }
@@ -44,8 +55,37 @@ class App extends React.Component {
             return <LoginPage />;
         }
 
-        return <QuestionPage />;
-    }
+        console.log('PROPS TOGGLE DASH ', this.props.toggleDashboard)        
+
+        if (this.props.toggleDashboard % 2 === 0) {
+            console.log(this.props.toggleDashboard)
+            console.log('render userSelection')
+            return (
+                <div>
+                    <Dashboard />
+                </div>
+            )
+
+        } else {
+
+        console.log('render questions')
+        return (
+
+            <div>
+                <div className="parent">
+                <QuestionPage />
+                </div>
+            </div>
+        )
+    }}
 }
 
-export default App;
+
+
+const mapStateToProps = (state, props) => ({
+    toggleDashboard: state.toggleDashboard,
+    selectedLanguage: state.selectedLanguage
+});
+
+
+export default connect(mapStateToProps)(App)
