@@ -397,15 +397,16 @@ body {
 }
 
 .logInFooter {
-  height: 20px;
+  height: 40px;
   width: 100%;
   background-image: none;
   background-color: #F7CE3E;
+  margin-top: -40px;
 }
 
 .signInPageWrapper {
   height: 1000px;
-  background-image: url("http://tropicalvacationspotsblog.com/wp-content/uploads/2013/05/CLPMBP10_Barachois03_web.jpg");
+  background-image: url("http://imagizer.imageshack.us/v2/xq90/922/9gFDEf.jpg");
   background-color: #cccccc;
   background-repeat: no-repeat;
   background-attachment: fixed;

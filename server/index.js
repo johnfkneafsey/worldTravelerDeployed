@@ -876,7 +876,8 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 let server;
 function runServer(port=3001) {
     return new Promise((resolve, reject) => {
-        mongoose.connect('mongodb://user:password@ds159330.mlab.com:59330/worldtraveler', function(err) {
+        mongoose.connect('mongodb://localhost/SpacedRepetition', function(err) {
+        // mongoose.connect('mongodb://user:password@ds159330.mlab.com:59330/worldtraveler', function(err) {
             if(err) {
                 return reject(err);
             }
